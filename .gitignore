@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# dev keys
+/config/keys/dev.js
+
 # IDE files
 .idea
 *.iml
