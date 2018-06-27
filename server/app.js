@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const errorHandler = require("./middlewares/errorHandler");
-const winston = require("winston");
+const logger = require("./helpers/logger");
 
 // Secret keys for mongo, redis and cookie session encryption
 const keys = require("../config/keys");
@@ -20,10 +20,7 @@ mongoose.Promise = Promise;
   try {
     await mongoose.connect(keys.mongoUri);
   } catch (e) {
-    winston.log(
-      "error",
-      `Error connecting to MongoDB: ${e.code}, ${e.message}`
-    );
+    logger.error(`Error connecting to MongoDB: ${e.code}, ${e.message}`);
   }
 })();
 
@@ -51,7 +48,7 @@ if (
   process.env.CI ||
   ["production", "ci", "test"].includes(process.env.NODE_ENV)
 ) {
-  winston.info("Detected test, CI or prod mode, serving static files from / ");
+  logger.info("Detected test, CI or prod mode, serving static files from / ");
   app.use(express.static("build"));
   app.get("*", (req, res) => {
     // Respond to all routes with the / one, react will take care of the routing
