@@ -6,6 +6,10 @@
 # dev keys
 /config/keys/dev.js
 
+# logs
+combined.log
+error.log
+
 # IDE files
 .idea
 *.iml
