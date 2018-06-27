@@ -1,6 +1,6 @@
-const { sample_action } = require("../controllers/sampleController");
+const { ping } = require("../controllers/sampleController");
 
 module.exports = app => {
-  app.get("/api/sample_action", sample_action);
+  app.get("/api/ping", ping);
 };
 
