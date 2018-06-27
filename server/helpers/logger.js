@@ -1,19 +1,31 @@
 // Create a custom Winston logger
-const winston = require("winston");
-const logger = winston.createLogger({
+const { format, createLogger, transports } = require("winston");
+
+const logger = createLogger({
   level: "info",
-  format: winston.format.json(),
+  format: format.combine(
+    format.timestamp({
+      format: "YYYY-MM-DD HH:mm:ss"
+    }),
+    format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+  ),
   transports: [
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    new winston.transports.File({ filename: "combined.log" })
+    new transports.File({ filename: "error.log", level: "error" }),
+    new transports.File({ filename: "combined.log" })
   ]
 });
 // If not prod mode - output to console too
-if (process.env.NODE_ENV !== "production"){
-  logger.add(new winston.transports.Console({
-    format: winston.format.simple()
-  }))
+if (process.env.NODE_ENV !== "production") {
+  logger.add(
+    new transports.Console({
+      format: format.combine(
+        format.timestamp({
+          format: "YYYY-MM-DD HH:mm:ss"
+        }),
+        format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+      )
+    })
+  );
 }
-
 
 module.exports = logger;
