@@ -5,6 +5,7 @@
 
 # dev keys
 /config/keys/dev.js
+.env
 
 # logs
 combined.log

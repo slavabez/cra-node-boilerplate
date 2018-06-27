@@ -15,7 +15,7 @@ const logger = createLogger({
   ]
 });
 // If not prod mode - output to console too
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production" || process.env.DEBUG) {
   logger.add(
     new transports.Console({
       format: format.combine(
