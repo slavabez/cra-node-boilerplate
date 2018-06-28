@@ -1,6 +1,8 @@
 ## Simple React + Express boilerplate
 Simple Full-Stack boilerplate based on the amazing [Create React App](https://github.com/facebook/create-react-app) project.
 
+[![Build Status](https://travis-ci.org/slavabez/cra-node-boilerplate.svg?branch=master)](https://travis-ci.org/slavabez/cra-node-boilerplate)
+
 ### The stack
 
 * **Ejected Create React App.** Ejected for better integration of the front-end with the server side, specifically for a single Jest test suite that tests both the front-end and the back-end.
